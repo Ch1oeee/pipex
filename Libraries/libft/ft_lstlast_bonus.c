@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 16:03:20 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/03/07 16:19:08 by cmontaig         ###   ########.fr       */
+/*   Created: 2024/11/14 10:47:43 by cmontaig          #+#    #+#             */
+/*   Updated: 2024/11/14 13:26:58 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
-# include "../Libraries/libft/libft.h"
-# include "../Libraries/ft_printf/ft_printf.h"
-
-typedef struct pipex
+t_list	*ft_lstlast(t_list *lst)
 {
-	char	**env;
-	char	**path;
-}			t_pipex;
-
-
-
-#endif
+	if (!lst)
+		return (NULL);
+	while (lst->next != NULL)
+	{
+		lst = lst->next;
+	}
+	return (lst);
+}

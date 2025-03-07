@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 15:54:41 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/03/07 16:21:37 by cmontaig         ###   ########.fr       */
+/*   Created: 2024/11/14 15:04:28 by cmontaig          #+#    #+#             */
+/*   Updated: 2024/11/14 16:09:18 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	get_env_path(t_pipex *pipex, char **env)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	int	i;
-	
-	i = 0;
-	while(env[i])
+	t_list	*new_list;
+	t_list	*new_element;
+
+	if (!lst || !del || !f)
+		return (NULL);
+	new_list = NULL;
+	while (lst != NULL)
 	{
-		if(ft_strstr(env[i], "PATH="))
+		new_element = ft_lstnew(f(lst->content));
+		if (!new_element)
 		{
-			pipex->path = ft_split(env[i] + 5, ":");
-			return ;
+			ft_lstclear(&new_list, del);
+			return (NULL);
 		}
-		i++;
+		ft_lstadd_back(&new_list, new_element);
+		lst = lst->next;
 	}
-	pipex->path = NULL;
+	return (new_list);
 }

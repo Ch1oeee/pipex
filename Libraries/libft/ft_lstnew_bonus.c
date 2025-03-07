@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 16:03:20 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/03/07 16:19:08 by cmontaig         ###   ########.fr       */
+/*   Created: 2024/11/13 10:54:52 by cmontaig          #+#    #+#             */
+/*   Updated: 2024/11/14 16:10:36 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
-# include "../Libraries/libft/libft.h"
-# include "../Libraries/ft_printf/ft_printf.h"
-
-typedef struct pipex
+t_list	*ft_lstnew(void *content)
 {
-	char	**env;
-	char	**path;
-}			t_pipex;
+	t_list	*new_el;
 
-
-
-#endif
+	new_el = malloc(sizeof(t_list));
+	if (!new_el)
+		return (NULL);
+	new_el->content = content;
+	new_el->next = NULL;
+	return (new_el);
+}

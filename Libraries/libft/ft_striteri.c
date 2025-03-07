@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 16:03:20 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/03/07 16:19:08 by cmontaig         ###   ########.fr       */
+/*   Created: 2024/11/13 08:14:31 by cmontaig          #+#    #+#             */
+/*   Updated: 2024/11/13 09:44:17 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
-# include "../Libraries/libft/libft.h"
-# include "../Libraries/ft_printf/ft_printf.h"
-
-typedef struct pipex
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	char	**env;
-	char	**path;
-}			t_pipex;
+	size_t	i;
 
-
-
-#endif
+	i = 0;
+	while (s[i])
+	{
+		f(i, &s[i]);
+		i++;
+	}
+}

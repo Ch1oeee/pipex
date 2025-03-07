@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 16:03:20 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/03/07 16:19:08 by cmontaig         ###   ########.fr       */
+/*   Created: 2024/11/08 16:43:26 by cmontaig          #+#    #+#             */
+/*   Updated: 2024/11/09 10:08:22 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
-# include "../Libraries/libft/libft.h"
-# include "../Libraries/ft_printf/ft_printf.h"
-
-typedef struct pipex
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	char	**env;
-	char	**path;
-}			t_pipex;
+	void	*ptr;
 
-
-
-#endif
+	if (nmemb * size > 65535 || (nmemb > 65535 && size > 65535))
+		return (NULL);
+	ptr = malloc(nmemb * size);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, nmemb * size);
+	return (ptr);
+}

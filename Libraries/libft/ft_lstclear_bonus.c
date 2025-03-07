@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 16:03:20 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/03/07 16:19:08 by cmontaig         ###   ########.fr       */
+/*   Created: 2024/11/14 13:38:04 by cmontaig          #+#    #+#             */
+/*   Updated: 2024/11/14 14:27:17 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
-# include "../Libraries/libft/libft.h"
-# include "../Libraries/ft_printf/ft_printf.h"
-
-typedef struct pipex
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	char	**env;
-	char	**path;
-}			t_pipex;
+	t_list	*lst_2;
+	t_list	*lst_temp;
 
-
-
-#endif
+	if (!lst || !del)
+		return ;
+	lst_2 = *lst;
+	while (lst_2 != NULL)
+	{
+		lst_temp = lst_2;
+		lst_2 = lst_2->next;
+		del(lst_temp->content);
+		free(lst_temp);
+	}
+	*lst = NULL;
+}

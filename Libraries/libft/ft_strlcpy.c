@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmontaig <cmontaig@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 15:54:41 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/03/07 16:21:37 by cmontaig         ###   ########.fr       */
+/*   Created: 2024/11/04 16:19:50 by cmontaig          #+#    #+#             */
+/*   Updated: 2024/11/04 16:57:22 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	get_env_path(t_pipex *pipex, char **env)
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	int	i;
-	
+	size_t	i;
+
 	i = 0;
-	while(env[i])
+	if (size == 0)
+		return (ft_strlen(src));
+	while (src[i] && i < (size - 1))
 	{
-		if(ft_strstr(env[i], "PATH="))
-		{
-			pipex->path = ft_split(env[i] + 5, ":");
-			return ;
-		}
+		dest[i] = src[i];
 		i++;
 	}
-	pipex->path = NULL;
+	dest[i] = '\0';
+	return (ft_strlen(src));
 }

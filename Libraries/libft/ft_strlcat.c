@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 15:54:41 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/03/07 16:21:37 by cmontaig         ###   ########.fr       */
+/*   Created: 2024/11/05 09:51:00 by cmontaig          #+#    #+#             */
+/*   Updated: 2024/11/09 10:09:08 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	get_env_path(t_pipex *pipex, char **env)
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	int	i;
-	
+	size_t	i;
+	size_t	dest_len;
+	size_t	src_len;
+
 	i = 0;
-	while(env[i])
+	dest_len = ft_strlen(dest);
+	src_len = ft_strlen(src);
+	if (size <= dest_len)
+		return (src_len + size);
+	if (size < dest_len)
+		return (dest_len);
+	while (src[i] && (i + dest_len < size - 1))
 	{
-		if(ft_strstr(env[i], "PATH="))
-		{
-			pipex->path = ft_split(env[i] + 5, ":");
-			return ;
-		}
+		dest[i + dest_len] = src[i];
 		i++;
 	}
-	pipex->path = NULL;
+	dest[i + dest_len] = '\0';
+	return (dest_len + src_len);
 }

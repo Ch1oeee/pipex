@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 16:03:20 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/03/07 16:19:08 by cmontaig         ###   ########.fr       */
+/*   Created: 2024/11/05 15:02:49 by cmontaig          #+#    #+#             */
+/*   Updated: 2024/11/09 10:09:25 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
-# include "../Libraries/libft/libft.h"
-# include "../Libraries/ft_printf/ft_printf.h"
-
-typedef struct pipex
+char	*ft_strchr(const char *str, int c)
 {
-	char	**env;
-	char	**path;
-}			t_pipex;
+	size_t	i;
 
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == (char)c)
+			return ((char *)&str[i]);
+		i++;
+	}
+	if (c == '\0')
+		return ((char *)&str[i]);
+	return (NULL);
+}
 
-
-#endif
+// int	main(void)
+// {
+// 	char	str[] = "fizzy le clown";
+// 	printf("%s\n", ft_strchr(str, 'a'));
+// }

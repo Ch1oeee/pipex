@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 16:03:20 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/03/07 16:19:08 by cmontaig         ###   ########.fr       */
+/*   Created: 2024/11/07 13:28:08 by cmontaig          #+#    #+#             */
+/*   Updated: 2024/11/09 10:09:59 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "libft.h"
+#include <strings.h>
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
-# include "../Libraries/libft/libft.h"
-# include "../Libraries/ft_printf/ft_printf.h"
-
-typedef struct pipex
+void	ft_bzero(void *s, size_t n)
 {
-	char	**env;
-	char	**path;
-}			t_pipex;
+	size_t	i;
+	char	*dest;
 
+	dest = ((char *)s);
+	i = 0;
+	while (i < n)
+	{
+		dest[i] = 0;
+		i++;
+	}
+}
 
-
-#endif
+// int	main(void)
+// {
+// 	char s[] = "Bonjour";
+// 	size_t n = 4;
+// 	ft_bzero(s, n);
+// 	return (0);
+// }
