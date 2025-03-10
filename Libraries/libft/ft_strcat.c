@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 16:03:20 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/03/10 15:42:52 by cmontaig         ###   ########.fr       */
+/*   Created: 2025/03/10 14:09:34 by cmontaig          #+#    #+#             */
+/*   Updated: 2025/03/10 14:09:40 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
-
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include "../Libraries/libft/libft.h"
-# include "../Libraries/ft_printf/ft_printf.h"
-
-typedef struct pipex
+char	*ft_strcat(char *dest, char *src)
 {
-	char	**env;
-	char	**path;
-}			t_pipex;
+	int	i;
+	int	j;
 
-char	*find_command(char **path_dirs, char *cmd);
-void	get_env_path(t_pipex *pipex, char **env);
-
-#endif
+	i = 0;
+	j = 0;
+	while (dest[i] != '\0')
+	{
+		i++;
+	}
+	while (src[j] != '\0')
+	{
+		dest[i + j] = src[j];
+		j++;
+	}
+	dest[i + j] = '\0';
+	return (dest);
+}

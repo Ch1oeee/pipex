@@ -6,7 +6,7 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 19:01:56 by cmontaig          #+#    #+#             */
-/*   Updated: 2024/12/30 12:03:08 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/03/10 14:16:26 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,4 @@ char	**ft_split(char const *str, char c)
 		}
 	}
 	return (words);
-}
-
-int	main(void)
-{
-	// char	str[] = "Fizzyclap en vacances a la Fizzyplage";
-	char	str[] = "    l     l      lllllllll";
-	char	c = 'l';
-	ft_split(str, c);
-
-
-	return (0);
 }

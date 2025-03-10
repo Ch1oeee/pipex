@@ -31,6 +31,7 @@ SRCS = 	../ft_printf/ft_printf.c\
 		ft_strjoin.c\
 		ft_strlcat.c\
 		ft_strlcpy.c\
+		ft_strcpy.c\
 		ft_strlen.c\
 		ft_strmapi.c\
 		ft_strncmp.c\
@@ -49,6 +50,7 @@ SRCS = 	../ft_printf/ft_printf.c\
 		ft_lstclear_bonus.c\
 		ft_lstiter_bonus.c\
 		*ft_lstmap_bonus.c\
+		ft_strcat.c\
 
 OBJS = $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:36:55 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/03/07 16:14:10 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/03/10 14:10:06 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlcat(char *dest, const char *src, size_t size);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
+char	*ft_strcpy(char *dest, char *src);
 size_t	ft_strlen(const char *s);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -68,5 +69,6 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *str, unsigned int start, size_t len);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+char	*ft_strcat(char *dest, char *src);
 
 #endif

@@ -10,7 +10,7 @@ NC = \033[0m
 LIBRARIES_DIR = ./Libraries/libft
 LIBRARIES = $(LIBRARIES_DIR)/libft.a
 
-SRCS =	
+SRCS =	srcs/parsing.c\
 
 OBJS = $(SRCS:.c=.o)
 
