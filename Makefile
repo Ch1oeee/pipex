@@ -11,6 +11,7 @@ LIBRARIES_DIR = ./Libraries/libft
 LIBRARIES = $(LIBRARIES_DIR)/libft.a
 
 SRCS =	srcs/parsing.c\
+		srcs/pipex.c\
 
 OBJS = $(SRCS:.c=.o)
 

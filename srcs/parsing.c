@@ -6,7 +6,7 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 15:54:41 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/03/10 15:50:43 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/03/15 16:23:25 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,14 @@ char *find_command(char **path_dirs, char *cmd)
 	
 	i = 0;
 	full_path = NULL;
+
+	//verif chemin absolu maybeeee
+	
 	while (path_dirs[i])
 	{
-		slash_path = ft_strjoin(full_path[i], "/");
-		full_path = ft_strjoin(full_path[i], cmd);
+		slash_path = ft_strjoin(path_dirs[i], "/");
+		full_path = ft_strjoin(slash_path, cmd);
+		free(slash_path);
 		if (access(full_path, X_OK) == 0)
 			return full_path;
 		free(full_path);
@@ -50,32 +54,5 @@ char *find_command(char **path_dirs, char *cmd)
 	return NULL;
 }
 
-void print_paths(char **paths)
-{
-	int	i;
 
-	if (!paths)
-	{
-		printf("Aucun chemin trouvé\n");
-		return;
-	}
-	i = 0;
-	while (paths[i])
-	{
-		printf("Chemin %d: %s\n", i, paths[i]);
-		i++;
-	}
-}
 
-int main(int argc, char **argv, char **env)
-{
-	t_pipex pipex;
-	(void)argv;
-	(void)argc;
-
-	get_env_path(&pipex, env);
-	printf("== Chemins trouvés ==\n");
-	print_paths(pipex.path);
-	
-	return 0;
-}

@@ -6,7 +6,7 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:03:20 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/03/10 15:42:52 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/03/12 13:57:46 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <string.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <sys/wait.h>
 # include "../Libraries/libft/libft.h"
 # include "../Libraries/ft_printf/ft_printf.h"
 
