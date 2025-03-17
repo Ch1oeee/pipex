@@ -12,6 +12,7 @@ LIBRARIES = $(LIBRARIES_DIR)/libft.a
 
 SRCS =	srcs/parsing.c\
 		srcs/pipex.c\
+		srcs/free_and_error.c\
 
 OBJS = $(SRCS:.c=.o)
 

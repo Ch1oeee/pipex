@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmontaig <cmontaig@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:57:41 by cmontaig          #+#    #+#             */
-/*   Updated: 2024/12/21 01:41:59 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:54:01 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,9 @@ int	ft_atoi(const char *str)
 	return (result * sign);
 }
 
-int	main(void)
-{
-	const char *a = "   +000001234ab567";
-	printf("%d", ft_atoi(a));
-	return (0);
-}
-
+// int	main(void)
+// {
+// 	const char *a = "   +000001234ab567";
+// 	printf("%d", ft_atoi(a));
+// 	return (0);
+// }
