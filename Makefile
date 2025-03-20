@@ -1,4 +1,5 @@
 NAME = pipex
+BONUS_NAME = pipex_bonus
 FLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=address
 RM = rm -rf
 
@@ -14,7 +15,11 @@ SRCS =	srcs/parsing.c\
 		srcs/pipex.c\
 		srcs/free_and_error.c\
 
+BONUS_SRCS =	srcs/bonus/pipex_bonus.c\
+				srcs/bonus/parsing_bonus.c\
+
 OBJS = $(SRCS:.c=.o)
+BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
 $(NAME): $(LIBRARIES) $(OBJS)
 	@echo "$(ROSE)\e[1m┌─────$(NAME)────────────────────────────────────┐\e"
@@ -25,6 +30,15 @@ $(NAME): $(LIBRARIES) $(OBJS)
 	@echo "││$(GREEN)	      \e[1mCompilation finished 🌱\e		$(ROSE) │"
 	@echo "\e[1m└────────────────────────────────────────────────┘\e"
 
+$(BONUS_NAME): $(LIBRARIES) $(BONUS_OBJS)
+	@echo "$(ROSE)\e[1m┌─────$(BONUS_NAME)─────────────────────────────┐\e"
+	@echo "││$(BLUE)		Compiling $(BONUS_NAME) 🎯	$(ROSE)│"
+	@echo "\e[1m└───────────────────────────────────────────────┘\e"
+	@$(CC) $(FLAGS) -o $(BONUS_NAME) $(BONUS_OBJS) $(LIBRARIES)
+	@echo "$(RED)\e[1m┌─────$(BONUS_NAME)─────────────────────────────┐\e"
+	@echo "││$(GREEN)		\e[1mCompilation finished 🌟\e	$(ROSE)	│"
+	@echo "\e[1m└───────────────────────────────────────────────┘\e"
+
 $(LIBRARIES):
 	@$(MAKE) -C $(LIBRARIES_DIR) --no-print-directory
 
@@ -33,14 +47,16 @@ $(LIBRARIES):
 
 all: $(NAME)
 
+bonus: $(BONUS_NAME)
+
 clean:
-	@$(RM) $(OBJS) 
+	@$(RM) $(OBJS) $(BONUS_OBJS)
 	@$(MAKE) -C $(LIBRARIES_DIR) clean --no-print-directory
 
 fclean: clean
-	@$(RM) $(NAME)
+	@$(RM) $(NAME) $(BONUS_OBJS) $(BONUS_NAME)
 	@$(MAKE) -C $(LIBRARIES_DIR) fclean --no-print-directory
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re 
+.PHONY: all bonus clean fclean re bonus
