@@ -6,7 +6,7 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 13:40:35 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/03/20 16:29:12 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/03/22 13:35:10 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,52 +97,3 @@ int	main(int argc, char **argv, char **env)
 	}
 	return (0);
 }
-
-// int	main(int ac, char **av)
-// {
-// 	__pid_t	pid = 0;
-// 	int		exit_status;
-// 	int		pipe_fd[2];
-
-// 	pipe(pipe_fd);
-// 	pid = fork();
-// 	if (pid) // parents
-// 	{
-// 		int	fdstdint = dup(0);
-// 		int	fdstdout = dup(1);
-// 		int	fd_in = open("./InputFile", O_RDONLY);
-// 		dup2(fd_in, 0);
-// 		dup2(pipe_fd[1], 1);
-// 		close(pipe_fd[0]);
-
-// 		//cat
-
-// 		close(0);
-// 		close(1);
-// 		dup2(fdstdint, 0);
-// 		dup2(fdstdout, 1);
-// 		close(fd_in); //
-// 		close(pipe_fd[1]); //
-// 		waitpid(pid, &exit_status, 0);
-// 	}
-// 	else // child
-// 	{
-// 		int	fdstdint = dup(0);
-// 		int	fdstdout = dup(1);
-// 		int	fd_out = open("./OutputFile", O_WRONLY | O_TRUNC);
-
-// 		dup2(pipe_fd[0], 0);
-// 		dup2(fd_out, 1);
-// 		close(pipe_fd[1]);
-
-// 		//grep
-// 		close(0);
-// 		close(1);
-// 		dup2(fdstdint, 0);
-// 		dup2(fdstdout, 1);
-// 		close(fd_out);
-// 		close(pipe_fd[0]);
-// 		exit(42);
-// 	}
-// 	return (0);
-// }

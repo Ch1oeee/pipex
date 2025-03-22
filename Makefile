@@ -17,6 +17,8 @@ SRCS =	srcs/parsing.c\
 
 BONUS_SRCS =	srcs/bonus/pipex_bonus.c\
 				srcs/bonus/parsing_bonus.c\
+				srcs/bonus/free_bonus.c\
+				srcs/bonus/create_list.c\
 
 OBJS = $(SRCS:.c=.o)
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:03:20 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/03/17 17:44:46 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/03/22 17:16:12 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PIPEX_H
 
 # include <stdio.h>
+# include <stdbool.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
@@ -23,11 +24,22 @@
 # include "../Libraries/libft/libft.h"
 # include "../Libraries/ft_printf/ft_printf.h"
 
+typedef struct cmd
+{
+	pid_t		pid;
+	char		**args;
+	char		*cmd_path;
+	struct cmd	*next;
+}			t_cmd;
+
 typedef struct pipex
 {
 	char	**env;
 	char	**path;
+	bool	is_heredoc;
+	t_cmd	*cmd;
 }			t_pipex;
+
 
 char	*find_command(char **path_dirs, char *cmd);
 void	get_env_path(t_pipex *pipex, char **env);
@@ -37,5 +49,12 @@ void	exit_handler(int error_code);
 void	execute_cmd(char *argv, char **env);
 void	parents(char **argv, char **env, int *fd);
 void	child(char **argv, char **env, int *fd);
+
+//BONUS
+void	cmd_add_back(t_cmd **cmd, t_cmd *new);
+t_cmd	*cmd_last(t_cmd *cmd);
+t_cmd	*cmd_new(char *argv, t_pipex pipex);
+void	create_list(t_pipex *pipex, char **argv, int ac);
+
 
 #endif

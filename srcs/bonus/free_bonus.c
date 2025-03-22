@@ -1,32 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_bonus.c                                      :+:      :+:    :+:   */
+/*   free_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/19 16:15:25 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/03/22 17:19:42 by cmontaig         ###   ########.fr       */
+/*   Created: 2025/03/21 16:15:49 by cmontaig          #+#    #+#             */
+/*   Updated: 2025/03/21 16:16:15 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
-#include "../../Libraries/libft/libft.h"
 
-int	main(int argc, char **argv, char **env)
+void	exit_handler(int error_code)
 {
-	t_pipex	pipex;
-	int	fd[2];
-	int status;
-	
-	if (argc >= 5)
-	{
-		
-	}
+	if (error_code == EACCES)
+		exit(126);
 	else
+		exit(127);
+}
+
+void	free_path(t_pipex *pipex)
+{
+	int	i;
+
+	if (pipex->path)
 	{
-		ft_putstr_fd("Missing arguments\n", 1);
-		exit (1);
+		i = -1;
+		while (pipex->path[++i])
+			free(pipex->path[i]);
+		free(pipex->path);
 	}
-	return (0);
+}
+
+void	free_cmd(char **cmd)
+{
+	int	i;
+
+	i = -1;
+	while (cmd[++i])
+		free(cmd[i]);
+	free(cmd);
 }
