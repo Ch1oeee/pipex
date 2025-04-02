@@ -6,7 +6,7 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:36:55 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/03/10 14:10:06 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/04/02 19:35:19 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ char	*ft_substr(char const *str, unsigned int start, size_t len);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
 char	*ft_strcat(char *dest, char *src);
+int		ft_strcmp(char *s1, char *s2);
 
 #endif

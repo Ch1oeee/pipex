@@ -6,7 +6,7 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 16:36:38 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/03/22 13:23:01 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/04/02 18:48:33 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	get_env_path(t_pipex *pipex, char **env)
 	free(path);
 }
 
-char	*find_command(t_pipex *pipex, char *cmd)
+char	*find_command_b(t_pipex *pipex, char *cmd)
 {
 	int		i;
 	char	*full_path;

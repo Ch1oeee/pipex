@@ -6,7 +6,7 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 16:03:20 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/03/22 17:16:12 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/04/02 19:48:27 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,11 @@ typedef struct pipex
 	char	**env;
 	char	**path;
 	bool	is_heredoc;
+	int		infile_fd;
+	int		outfile_fd;
+	int		status;
 	t_cmd	*cmd;
 }			t_pipex;
-
 
 char	*find_command(char **path_dirs, char *cmd);
 void	get_env_path(t_pipex *pipex, char **env);
@@ -55,6 +57,11 @@ void	cmd_add_back(t_cmd **cmd, t_cmd *new);
 t_cmd	*cmd_last(t_cmd *cmd);
 t_cmd	*cmd_new(char *argv, t_pipex pipex);
 void	create_list(t_pipex *pipex, char **argv, int ac);
+void	free_pipex(t_pipex *pipex);
+char	*find_command_b(t_pipex *pipex, char *cmd);
+void	execute_cmd_b(t_pipex *pipex, char **env);
+void	free_cmd_list(t_cmd *cmd);
+void	free_pipex(t_pipex *pipex);
 
 
 #endif
