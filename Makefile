@@ -24,20 +24,20 @@ OBJS = $(SRCS:.c=.o)
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
 $(NAME): $(LIBRARIES) $(OBJS)
-	@echo "$(ROSE)\e[1m┌─────$(NAME)────────────────────────────────────┐\e"
-	@echo "││$(BLUE)	      Compiling $(NAME) 🌀		$(ROSE) │"
+	@echo "$(ROSE)\e[1m┌─────$(NAME)──────────────────────────────────────┐\e"
+	@echo "││$(BLUE)	      	Compiling $(NAME) 🌀		$(ROSE) │"
 	@echo "\e[1m└────────────────────────────────────────────────┘\e"
 	@$(CC) $(FLAGS) -o $(NAME) $(OBJS) $(LIBRARIES)
-	@echo "$(RED)\e[1m┌─────$(NAME)────────────────────────────────────┐\e"
-	@echo "││$(GREEN)	      \e[1mCompilation finished 🌱\e		$(ROSE) │"
+	@echo "$(RED)\e[1m┌─────$(NAME)──────────────────────────────────────┐\e"
+	@echo "││$(GREEN)	     	 \e[1mCompilation finished 🌱\e	$(ROSE) │"
 	@echo "\e[1m└────────────────────────────────────────────────┘\e"
 
 $(BONUS_NAME): $(LIBRARIES) $(BONUS_OBJS)
-	@echo "$(ROSE)\e[1m┌─────$(BONUS_NAME)─────────────────────────────┐\e"
+	@echo "$(ROSE)\e[1m┌─────$(BONUS_NAME)───────────────────────────────┐\e"
 	@echo "││$(BLUE)		Compiling $(BONUS_NAME) 🎯	$(ROSE)│"
 	@echo "\e[1m└───────────────────────────────────────────────┘\e"
 	@$(CC) $(FLAGS) -o $(BONUS_NAME) $(BONUS_OBJS) $(LIBRARIES)
-	@echo "$(RED)\e[1m┌─────$(BONUS_NAME)─────────────────────────────┐\e"
+	@echo "$(RED)\e[1m┌─────$(BONUS_NAME)──────────────────────────────┐\e"
 	@echo "││$(GREEN)		\e[1mCompilation finished 🌟\e	$(ROSE)	│"
 	@echo "\e[1m└───────────────────────────────────────────────┘\e"
 

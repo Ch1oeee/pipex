@@ -6,26 +6,28 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 13:35:58 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/04/02 18:49:30 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/04/03 16:41:36 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "pipex_bonus.h"
 #include "../../Libraries/libft/libft.h"
 
-void	cmd_add_back(t_cmd **cmd, t_cmd *new)
+void cmd_add_back(t_cmd **cmd, t_cmd *new)
 {
-	t_cmd	*cmd_2;
+	t_cmd *cmd_2;
 
-	if (cmd == NULL)
-		return ;
-	if (*cmd == NULL)
-	{
+	if (!cmd)
+		return;
+	if (!*cmd)
 		*cmd = new;
-		return ;
+	else
+	{
+		cmd_2 = *cmd;
+		while (cmd_2->next != NULL)
+			cmd_2 = cmd_2->next;
+		cmd_2->next = new;
 	}
-	cmd_2 = cmd_last(*cmd);
-	cmd_2->next = new;
 }
 
 t_cmd	*cmd_last(t_cmd *cmd)
@@ -36,7 +38,6 @@ t_cmd	*cmd_last(t_cmd *cmd)
 		cmd = cmd->next;
 	return (cmd);
 }
-
 t_cmd	*cmd_new(char *argv, t_pipex pipex)
 {
 	t_cmd	*new;
@@ -47,19 +48,27 @@ t_cmd	*cmd_new(char *argv, t_pipex pipex)
 	new->args = ft_split(argv, ' ');
 	if (!new->args || !new->args[0])
 	{
+		free(new->args);
 		free(new);
 		return (NULL);
 	}
 	new->cmd_path = find_command_b(&pipex, new->args[0]);
+	if (!new->cmd_path)
+	{
+		free(new->args);
+		free(new);
+		return (NULL);
+	}
 	new->pid = 0;
 	new->next = NULL;
 	return (new);
 }
 
-void	create_list(t_pipex *pipex, char **argv, int ac)
+
+void create_list(t_pipex *pipex, char **argv, int ac)
 {
-	int	i;
-	t_cmd *new_cmd;
+	int		i;
+	t_cmd	*new_cmd;
 
 	i = 2 + pipex->is_heredoc;
 	while (i < ac - 1)
@@ -67,10 +76,13 @@ void	create_list(t_pipex *pipex, char **argv, int ac)
 		new_cmd = cmd_new(argv[i], *pipex);
 		if (!new_cmd)
 		{
-			printf("error while trying to fill cmd list");
-			return ;
+			printf("error while trying to fill cmd list\n");
+			free_pipex(pipex);
+			exit(1);
 		}
-		cmd_add_back(&pipex->cmd, new_cmd);
+		cmd_add_back(&(pipex->cmd), new_cmd);
 		i++;
 	}
 }
+
+

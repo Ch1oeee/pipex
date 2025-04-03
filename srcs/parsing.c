@@ -6,7 +6,7 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 15:54:41 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/03/21 16:46:34 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/04/03 15:21:47 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*find_command(char **path_dirs, char *cmd)
 		return (NULL);
 	if (ft_strchr(cmd, '/'))
 		return (ft_strdup(cmd));
-	while (path_dirs[i++])
+	while (path_dirs[i])
 	{
 		slash_path = ft_strjoin(path_dirs[i], "/");
 		if (!slash_path)
@@ -54,6 +54,7 @@ char	*find_command(char **path_dirs, char *cmd)
 		if (access(full_path, X_OK) == 0)
 			return (full_path);
 		free(full_path);
+		i++;
 	}
 	return (NULL);
 }

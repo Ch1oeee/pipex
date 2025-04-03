@@ -6,11 +6,11 @@
 /*   By: cmontaig <cmontaig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 16:15:49 by cmontaig          #+#    #+#             */
-/*   Updated: 2025/04/02 19:26:25 by cmontaig         ###   ########.fr       */
+/*   Updated: 2025/04/03 16:43:44 by cmontaig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "pipex_bonus.h"
 
 void	exit_handler(int error_code)
 {
@@ -42,29 +42,11 @@ void	free_cmd(char **cmd)
 		free(cmd[i]);
 	free(cmd);
 }
-
-void	free_cmd_list(t_cmd *cmd)
-{
-	t_cmd	*temp;
-	int		i;
-	while (cmd)
-	{
-		temp = cmd;
-		cmd = cmd->next;
-		i = 0;
-		while (temp->args && temp->args[i])
-			free(temp->args[i++]);
-		if (temp->args)
-			free(temp->args);
-		if (temp->cmd_path && temp->cmd_path != temp->args[0])
-			free(temp->cmd_path);
-		free(temp);
-	}
-}
-
 void	free_pipex(t_pipex *pipex)
 {
-	int	i;
+	int		i;
+	t_cmd	*tmp;
+	t_cmd	*next;
 
 	if (pipex->env)
 	{
@@ -80,6 +62,23 @@ void	free_pipex(t_pipex *pipex)
 			free(pipex->path[i++]);
 		free(pipex->path);
 	}
+	tmp = pipex->cmd;
+	while (tmp)
+	{
+		next = tmp->next;
+		if (tmp->args)
+		{
+			i = 0;
+			while (tmp->args[i])
+				free(tmp->args[i++]);
+			free(tmp->args);
+		}
+		if (tmp->cmd_path)
+			free(tmp->cmd_path);
+		free(tmp);
+		tmp = next;
+	}
+	pipex->cmd = NULL;
 	if (pipex->infile_fd > 2)
 		close(pipex->infile_fd);
 	if (pipex->outfile_fd > 2)
